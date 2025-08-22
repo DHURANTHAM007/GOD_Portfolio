@@ -1,32 +1,17 @@
-
-import React, { useMemo } from 'react';
+import React from 'react';
 
 const StarryBackground: React.FC = () => {
-  const stars = useMemo(() => {
-    const starArray = [];
-    for (let i = 0; i < 150; i++) {
-      const style = {
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        width: `${Math.random() * 2 + 1}px`,
-        height: `${Math.random() * 2 + 1}px`,
-        animationDelay: `${Math.random() * 4}s`,
-        animationDuration: `${Math.random() * 3 + 2}s`,
-      };
-      starArray.push(
-        <div
-          key={i}
-          className="absolute bg-white rounded-full twinkle"
-          style={style}
-        ></div>
-      );
-    }
-    return starArray;
-  }, []);
-
   return (
-    <div className="fixed top-0 left-0 w-full h-full -z-10">
-      {stars}
+    <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+      {/* Drifting star layers */}
+      <div id="stars1"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+      
+      {/* Shooting stars */}
+      <div className="shooting-star" style={{ animationDelay: '1s' }}></div>
+      <div className="shooting-star" style={{ animationDelay: '5s', animationDuration: '8s' }}></div>
+      <div className="shooting-star" style={{ animationDelay: '12s', animationDuration: '12s' }}></div>
     </div>
   );
 };

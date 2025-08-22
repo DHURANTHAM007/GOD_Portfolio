@@ -1,20 +1,30 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="!scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Celestial Portfolio of GOD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+              display: ['Orbitron', 'sans-serif'],
+            },
+            animation: {
+              'spin-slow': 'spin 30s linear infinite',
+            },
+          },
+        },
+      }
+    </script>
     <style>
-      @keyframes twinkle {
-        0%, 100% { opacity: 0.5; }
-        50% { opacity: 1; }
-      }
-      .twinkle {
-        animation: twinkle 4s ease-in-out infinite;
-      }
       @keyframes float {
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-20px); }
@@ -22,6 +32,90 @@
       .float {
         animation: float 6s ease-in-out infinite;
       }
+      @keyframes subtle-pulse {
+        0%, 100% { box-shadow: 0 0 25px rgba(252, 211, 77, 0.3), 0 0 50px rgba(168, 85, 247, 0.2); }
+        50% { box-shadow: 0 0 40px rgba(252, 211, 77, 0.4), 0 0 70px rgba(168, 85, 247, 0.3); }
+      }
+      .subtle-pulse {
+        animation: subtle-pulse 5s ease-in-out infinite;
+      }
+      @keyframes shooting-star {
+        0% {
+          transform: translateX(150vw) translateY(-50vh) rotate(225deg);
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(-50vw) translateY(50vh) rotate(225deg);
+          opacity: 0;
+        }
+      }
+      .shooting-star {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 150px;
+        height: 1px;
+        background: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
+        animation: shooting-star 10s linear infinite;
+      }
+       @keyframes loader-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .loader {
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        border-left-color: #fcd34d;
+        animation: loader-spin 1s linear infinite;
+      }
+      
+      /* New Starfield Background Styles */
+      @keyframes animStar {
+        from {
+          transform: translateY(0px);
+        }
+        to {
+          transform: translateY(-2000px);
+        }
+      }
+      #stars1, #stars2, #stars3 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #stars1 {
+        background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0, 0, 0, 0)), radial-gradient(1px 1px at 40px 70px, #fff, rgba(0, 0, 0, 0)), radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0, 0, 0, 0)), radial-gradient(1px 1px at 90px 40px, #fff, rgba(0, 0, 0, 0)), radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0)), radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        animation: animStar 50s linear infinite;
+      }
+      #stars2 {
+        background-image: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)), radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 50px 160px, #ddd, rgba(0, 0, 0, 0)), radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 130px 80px, #fff, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+        background-repeat: repeat;
+        background-size: 300px 300px;
+        animation: animStar 100s linear infinite;
+      }
+       #stars3 {
+        background-image: radial-gradient(3px 3px at 20px 30px, #eee, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 40px 70px, #fff, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 50px 160px, #ddd, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 90px 40px, #fff, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 130px 80px, #fff, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+        background-repeat: repeat;
+        background-size: 400px 400px;
+        animation: animStar 150s linear infinite;
+      }
+      @keyframes fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      .fade-in {
+        animation: fade-in 1s ease-in-out;
+      }
+
     </style>
   <script type="importmap">
 {
@@ -33,7 +127,7 @@
 }
 </script>
 </head>
-  <body class="bg-[#0c0c1e]">
+  <body>
     <div id="root"></div>
   </body>
 </html>

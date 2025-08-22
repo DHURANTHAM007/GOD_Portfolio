@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Hero from './components/Hero';
 import Aka from './components/Aka';
 import Bio from './components/Bio';
@@ -12,29 +11,74 @@ import References from './components/References';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import StarryBackground from './components/StarryBackground';
+import Loader from './components/Loader';
+import Cursor from './components/Cursor';
+import Header from './components/Header';
 import { portfolioData } from './constants';
 
 const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(error => console.error("Audio play failed:", error));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="relative min-h-screen bg-[#0c0c1e] text-slate-200 font-sans overflow-x-hidden">
-      <StarryBackground />
-      <div className="relative z-10">
-        <main className="container mx-auto px-6 md:px-12 py-16">
+    <div className="bg-[#0c0c1e] font-sans text-slate-300 overflow-x-hidden">
+      {/* BACKGROUND CONTAINER */}
+      <div 
+        className="fixed top-0 left-0 w-full h-full"
+        style={{
+          backgroundImage: "url('https://w.forfun.com/fetch/e8/e81414e6a4b11a91d1caf6c42173f1d8.jpeg')",
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center'
+        }}
+      >
+        <StarryBackground />
+      </div>
+
+      {/* FOREGROUND CONTENT */}
+      <div className="relative">
+        <Cursor />
+        <Header />
+        <audio ref={audioRef} loop>
+          <source src="https://cdn.pixabay.com/audio/2022/02/07/audio_cbe423d242.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <main className="max-w-5xl mx-auto px-6 md:px-8">
           <Hero 
             tagline={portfolioData.tagline}
-            oneLineBio={portfolioData.oneLineBio}
           />
-          <Aka aliases={portfolioData.aka} />
-          <Bio publications={portfolioData.publications} />
-          <Skills skills={portfolioData.coreSkills} />
-          <Experience experiences={portfolioData.experience} />
-          <Education education={portfolioData.education} />
-          <Achievements achievements={portfolioData.achievements} />
-          <Hobbies hobbies={portfolioData.hobbies} />
-          <References references={portfolioData.references} />
-          <CallToAction text={portfolioData.whyHire} />
+          <Aka id="aka" aliases={portfolioData.aka} coreDetails={portfolioData.coreDetails} />
+          <Bio id="publications" publications={portfolioData.publications} />
+          <Skills id="skills" skills={portfolioData.coreSkills} />
+          <Experience id="experience" experiences={portfolioData.experience} />
+          <Education id="education" education={portfolioData.education} />
+          <Achievements id="achievements" achievements={portfolioData.achievements} />
+          <Hobbies id="hobbies" hobbies={portfolioData.hobbies} />
+          <References id="references" references={portfolioData.references} />
+          <CallToAction id="why-hire" text={portfolioData.whyHire} />
         </main>
-        <Footer />
+        <Footer isPlaying={isPlaying} toggleAudio={toggleAudio} />
       </div>
     </div>
   );

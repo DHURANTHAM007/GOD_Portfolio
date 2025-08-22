@@ -23,19 +23,20 @@ const iconMap = {
 
 interface BioProps {
   publications: IPublication[];
+  id: string;
 }
 
-const Bio: React.FC<BioProps> = ({ publications }) => {
+const Bio: React.FC<BioProps> = ({ publications, id }) => {
   return (
-    <Section title="Biography & Publications">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <Section title="Biography & Publications" id={id}>
+      <div className="space-y-12">
         {publications.map((pub) => (
-          <div key={pub.category} className="bg-slate-800/30 p-6 rounded-lg border border-slate-700/50 backdrop-blur-sm">
-            <div className="flex items-center mb-4">
+          <div key={pub.category}>
+             <div className="flex items-center mb-4">
               {iconMap[pub.icon]}
-              <h3 className="text-xl font-bold ml-4 text-amber-200">{pub.category}</h3>
+              <h3 className="text-xl md:text-2xl font-bold ml-4 text-amber-200 font-display">{pub.category}</h3>
             </div>
-            <ul className="list-disc list-inside text-slate-300 space-y-2">
+            <ul className="list-disc list-inside text-slate-300 space-y-2 pl-4 md:pl-12">
               {pub.items.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}

@@ -1,4 +1,3 @@
-
 import { IPortfolioData } from './types';
 
 export const portfolioData: IPortfolioData = {
@@ -6,6 +5,11 @@ export const portfolioData: IPortfolioData = {
   oneLineBio: "Supreme executive with mastery in creation, timekeeping, narrative design, and crisis management.",
   aka: [
     "CEO of Reality", "Yahweh", "Allah", "Elohim", "Jehovah", "Adonai", "Abba", "El Shaddai", "The Almighty", "The Most High", "The Creator", "Adishakthi", "Ahura Mazda", "Ra", "Aten", "Zeus", "Odin", "Kami", "Unmoved Mover", "the Watchmaker", "the Prime Cause", "The Absolute", "Ar-Rahman", "Ar-Raheem", "Satnam", "Waheguru", "Adi Purush", "The One-Above-All", "The Presence", "Eru Ilúvatar", "The Architect", "The Force", "Q", "The Alpha and Omega", "The Infinite"
+  ],
+  coreDetails: [
+    { label: "Location", value: "Everywhere (Remote-friendly; runs on omnipresence)" },
+    { label: "Pronouns", value: "Infinite / It / He / She / They (depending on the file)" },
+    { label: "Contact", value: "Prayer · Meditation · Offering · Comic-con cameo" }
   ],
   publications: [
     {
@@ -82,10 +86,12 @@ export const portfolioData: IPortfolioData = {
   whyHire: "I build stable systems, scale across infinite customers, handle crises at a cosmic scale, and keep the brand relevant for millennia. I have zero turnover, am always on-call, and rarely need a coffee break."
 };
 
-export const PROFILE_IMAGES = [
-  "https://picsum.photos/seed/galaxy/400/400",
-  "https://picsum.photos/seed/nebula/400/400",
-  "https://picsum.photos/seed/stars/400/400",
-  "https://picsum.photos/seed/cosmos/400/400",
-  "https://picsum.photos/seed/universe/400/400"
+export const DEITY_IMAGES = [
+  "https://images.unsplash.com/photo-1590430649512-8805f3238314?q=80&w=1887&auto=format&fit=crop", // Zeus-like statue
+  "https://images.unsplash.com/photo-1629806820065-a1c1a85b37b4?q=80&w=1964&auto=format&fit=crop", // Egyptian deity
+  "https://images.unsplash.com/photo-1597856485987-a37a1f7d6a5c?q=80&w=1887&auto=format&fit=crop", // Buddha statue
+  "https://images.unsplash.com/photo-1564057816523-6903a4a7b5a5?q=80&w=1887&auto=format&fit=crop", // Hindu deity Ganesha
+  "https://images.unsplash.com/photo-1601636773511-778103c73363?q=80&w=1887&auto=format&fit=crop", // Norse-like figure
+  "https://images.unsplash.com/photo-1600869342283-ce537b019551?q=80&w=1887&auto=format&fit=crop", // Abstract cosmic energy
+  "https://images.unsplash.com/photo-1587789425463-b88a85d01a2f?q=80&w=1887&auto=format&fit=crop" // Angelic figure
 ];

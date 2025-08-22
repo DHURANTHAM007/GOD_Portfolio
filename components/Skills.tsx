@@ -1,26 +1,30 @@
-
 import React from 'react';
 import Section from './Section';
 import type { ISkill } from '../types';
 
 interface SkillsProps {
   skills: ISkill[];
+  id: string;
 }
 
-const Skills: React.FC<SkillsProps> = ({ skills }) => {
+const SkillBar: React.FC<{ name: string; description: string }> = ({ name, description }) => {
+    return (
+        <div className="mb-8">
+            <h3 className="text-lg md:text-xl font-display font-bold text-amber-200 mb-2">{name}</h3>
+            <div className="w-full bg-slate-800/50 rounded-full h-2.5 mb-2">
+                <div className="bg-gradient-to-r from-amber-400 to-amber-600 h-2.5 rounded-full" style={{ width: '100%', boxShadow: '0 0 10px rgba(252, 211, 77, 0.5)' }}></div>
+            </div>
+            <p className="text-slate-400">{description}</p>
+        </div>
+    );
+};
+
+const Skills: React.FC<SkillsProps> = ({ skills, id }) => {
   return (
-    <Section title="Core Skills">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <Section title="Core Skills" id={id}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
         {skills.map((skill) => (
-          <div
-            key={skill.name}
-            className="group p-6 rounded-lg bg-slate-900/50 border border-slate-800 backdrop-blur-sm transform transition-all duration-300 hover:-translate-y-2 hover:border-amber-300/50 hover:shadow-2xl hover:shadow-amber-400/10"
-          >
-            <h3 className="text-2xl font-bold text-amber-300 mb-2">{skill.name}</h3>
-            <p className="text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-              {skill.description}
-            </p>
-          </div>
+          <SkillBar key={skill.name} name={skill.name} description={skill.description} />
         ))}
       </div>
     </Section>

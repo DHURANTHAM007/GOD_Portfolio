@@ -1,4 +1,9 @@
 
+export interface ICoreDetail {
+  label: string;
+  value: string;
+}
+
 export interface IPublication {
   category: string;
   items: string[];
@@ -42,6 +47,7 @@ export interface IPortfolioData {
   tagline: string;
   oneLineBio: string;
   aka: string[];
+  coreDetails: ICoreDetail[];
   publications: IPublication[];
   coreSkills: ISkill[];
   experience: IExperience[];

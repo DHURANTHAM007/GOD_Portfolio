@@ -1,23 +1,29 @@
-
 import React from 'react';
 import Section from './Section';
+import { ICoreDetail } from '../types';
 
 interface AkaProps {
   aliases: string[];
+  coreDetails: ICoreDetail[];
+  id: string;
 }
 
-const Aka: React.FC<AkaProps> = ({ aliases }) => {
+const Aka: React.FC<AkaProps> = ({ aliases, coreDetails, id }) => {
   return (
-    <Section title="AKA">
-      <div className="flex flex-wrap justify-center items-center gap-4 max-w-5xl mx-auto">
-        {aliases.map((alias, index) => (
-          <span
-            key={index}
-            className="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-sm text-amber-200 hover:bg-amber-300 hover:text-black transition-all duration-300 cursor-default shadow-lg hover:shadow-amber-300/30"
-          >
-            {alias}
-          </span>
+    <Section title="Core Details" id={id}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {coreDetails.map(detail => (
+          <div key={detail.label}>
+            <h3 className="font-display text-lg md:text-xl text-amber-300 mb-2">{detail.label}</h3>
+            <p className="text-slate-400">{detail.value}</p>
+          </div>
         ))}
+      </div>
+      <div>
+        <h3 className="font-display text-lg md:text-xl text-amber-300 mb-4">Also Known As</h3>
+        <p className="text-slate-400 leading-relaxed">
+          {aliases.join(' · ')}
+        </p>
       </div>
     </Section>
   );

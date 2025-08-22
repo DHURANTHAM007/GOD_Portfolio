@@ -1,65 +1,62 @@
-
 import React, { useState, useEffect } from 'react';
-import { PROFILE_IMAGES } from '../constants';
+import { DEITY_IMAGES } from '../constants';
 
 interface HeroProps {
     tagline: string;
-    oneLineBio: string;
 }
 
-const Typewriter: React.FC<{text: string}> = ({ text }) => {
-    const [displayedText, setDisplayedText] = useState('');
-    useEffect(() => {
-        let i = 0;
-        const intervalId = setInterval(() => {
-            if (i < text.length) {
-                setDisplayedText(prev => prev + text.charAt(i));
-                i++;
-            } else {
-                clearInterval(intervalId);
-            }
-        }, 50);
-        return () => clearInterval(intervalId);
-    }, [text]);
-
-    return <p className="text-xl md:text-2xl mt-4 text-slate-300 text-center min-h-[56px]">{displayedText}</p>;
-}
-
-
-const Hero: React.FC<HeroProps> = ({ tagline, oneLineBio }) => {
+const Hero: React.FC<HeroProps> = ({ tagline }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % PROFILE_IMAGES.length);
-    }, 10000);
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex(prevIndex => (prevIndex + 1) % DEITY_IMAGES.length);
+    }, 5000); // Swap image every 5 seconds
 
-    return () => clearInterval(timer);
+    return () => clearInterval(intervalId);
   }, []);
 
+  const handleScrollDown = () => {
+    document.querySelector('#aka')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <header className="min-h-screen flex flex-col items-center justify-center text-center -mt-16">
-      <div className="relative w-48 h-48 md:w-64 md:h-64 mb-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-300 to-purple-500 rounded-full animate-pulse blur-xl"></div>
-        {PROFILE_IMAGES.map((src, index) => (
-          <img
-            key={src}
-            src={src}
-            alt="Celestial View"
-            className={`w-full h-full rounded-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
+    <header id="home" className="min-h-screen flex flex-col items-center justify-center text-center relative -mt-16 pb-16">
+      <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+        <div className="text-[20rem] sm:text-[30rem] lg:text-[40rem] font-black font-display text-slate-800/50 select-none">
+          GOD
+        </div>
       </div>
-      <h1 className="text-7xl md:text-9xl font-extrabold text-white tracking-widest" style={{ textShadow: '0 0 15px rgba(255,255,255,0.5)' }}>
-        GOD
-      </h1>
-      <p className="text-lg md:text-xl mt-4 text-amber-200 tracking-wider">
-        {tagline}
-      </p>
-      <div className="mt-12 max-w-3xl mx-auto">
-        <Typewriter text={oneLineBio} />
+      
+      <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center z-10">
+        {/* Core Image Orb */}
+        <div className="w-full h-full rounded-full shadow-[0_0_80px_rgba(168,85,247,0.6)] overflow-hidden">
+          <img
+            key={currentImageIndex} // Key forces re-render and re-triggers animation
+            src={DEITY_IMAGES[currentImageIndex]}
+            alt="Divine representation"
+            className="w-full h-full object-cover object-center fade-in"
+          />
+        </div>
+        
+        {/* Rings */}
+        <div className="absolute w-[180%] h-[180%] border-2 border-amber-200/50 rounded-full animate-spin-slow"></div>
+        <div className="absolute w-[220%] h-[220%] border border-amber-200/20 rounded-full animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '45s' }}></div>
+      </div>
+
+      <div className="relative z-10 mt-12">
+        <p className="text-xl md:text-2xl mt-4 text-amber-200 tracking-wider" style={{ textShadow: '0 0 10px rgba(252, 211, 77, 0.5)' }}>
+          {tagline}
+        </p>
+      </div>
+
+      <div 
+        onClick={handleScrollDown}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer group z-20"
+      >
+        <div className="w-6 h-10 border-2 border-slate-400 group-hover:border-amber-300 transition-colors rounded-full flex justify-center items-start p-1">
+          <div className="w-1.5 h-1.5 bg-slate-400 group-hover:bg-amber-300 transition-colors rounded-full" style={{ animation: 'bounce 1.5s infinite' }}></div>
+        </div>
       </div>
     </header>
   );
