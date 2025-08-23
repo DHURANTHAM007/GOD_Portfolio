@@ -36,9 +36,12 @@ const Bio: React.FC<BioProps> = ({ publications, id }) => {
               {iconMap[pub.icon]}
               <h3 className="text-xl md:text-2xl font-bold ml-4 text-amber-200 font-display">{pub.category}</h3>
             </div>
-            <ul className="list-disc list-inside text-slate-300 space-y-2 pl-4 md:pl-12">
+            <ul className="space-y-3 text-slate-300 pl-4 md:pl-12">
               {pub.items.map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index} className="relative pl-6">
+                  <span className="absolute left-0 top-1.5 w-2 h-2 bg-amber-400 rounded-full shadow-[0_0_8px_#fcd34d]"></span>
+                  {item}
+                </li>
               ))}
             </ul>
           </div>

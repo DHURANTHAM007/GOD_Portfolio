@@ -12,9 +12,9 @@ import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import StarryBackground from './components/StarryBackground';
 import Loader from './components/Loader';
-import Cursor from './components/Cursor';
 import Header from './components/Header';
 import { portfolioData } from './constants';
+import Marquee from './components/Marquee';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -58,25 +58,29 @@ const App: React.FC = () => {
 
       {/* FOREGROUND CONTENT */}
       <div className="relative">
-        <Cursor />
         <Header />
         <audio ref={audioRef} loop>
           <source src="https://cdn.pixabay.com/audio/2022/02/07/audio_cbe423d242.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
-        <main className="max-w-5xl mx-auto px-6 md:px-8">
-          <Hero 
-            tagline={portfolioData.tagline}
-          />
-          <Aka id="aka" aliases={portfolioData.aka} coreDetails={portfolioData.coreDetails} />
-          <Bio id="publications" publications={portfolioData.publications} />
-          <Skills id="skills" skills={portfolioData.coreSkills} />
-          <Experience id="experience" experiences={portfolioData.experience} />
-          <Education id="education" education={portfolioData.education} />
-          <Achievements id="achievements" achievements={portfolioData.achievements} />
-          <Hobbies id="hobbies" hobbies={portfolioData.hobbies} />
-          <References id="references" references={portfolioData.references} />
-          <CallToAction id="why-hire" text={portfolioData.whyHire} />
+        <main>
+          <div className="max-w-5xl mx-auto px-6 md:px-8">
+            <Hero 
+              tagline={portfolioData.tagline}
+            />
+          </div>
+          <Marquee text={portfolioData.oneLineBio} />
+          <div className="max-w-5xl mx-auto px-6 md:px-8">
+            <Aka id="aka" aliases={portfolioData.aka} coreDetails={portfolioData.coreDetails} />
+            <Bio id="publications" publications={portfolioData.publications} />
+            <Skills id="skills" skills={portfolioData.coreSkills} />
+            <Experience id="experience" experiences={portfolioData.experience} />
+            <Education id="education" education={portfolioData.education} />
+            <Achievements id="achievements" achievements={portfolioData.achievements} />
+            <Hobbies id="hobbies" hobbies={portfolioData.hobbies} />
+            <References id="references" references={portfolioData.references} />
+            <CallToAction id="why-hire" text={portfolioData.whyHire} />
+          </div>
         </main>
         <Footer isPlaying={isPlaying} toggleAudio={toggleAudio} />
       </div>

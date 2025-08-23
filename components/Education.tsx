@@ -14,6 +14,7 @@ const Education: React.FC<EducationProps> = ({ education, id }) => {
         {education.map((edu, index) => (
           <div 
             key={index}
+            className="p-6 rounded-lg bg-slate-900/50 backdrop-blur-sm border border-slate-700/50"
           >
             <h3 className="text-lg md:text-xl font-display font-bold text-amber-300">{edu.institution}</h3>
             <p className="text-slate-400 mt-1">{edu.specialization}</p>

@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ tagline }) => {
       
       <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center z-10">
         {/* Core Image Orb */}
-        <div className="w-full h-full rounded-full shadow-[0_0_80px_rgba(168,85,247,0.6)] overflow-hidden">
+        <div className="w-full h-full rounded-full shadow-[0_0_150px_rgba(168,85,247,0.7)] overflow-hidden">
           <img
             key={currentImageIndex} // Key forces re-render and re-triggers animation
             src={DEITY_IMAGES[currentImageIndex]}
@@ -45,7 +45,7 @@ const Hero: React.FC<HeroProps> = ({ tagline }) => {
       </div>
 
       <div className="relative z-10 mt-12">
-        <p className="text-xl md:text-2xl mt-4 text-amber-200 tracking-wider" style={{ textShadow: '0 0 10px rgba(252, 211, 77, 0.5)' }}>
+        <p className="text-xl md:text-2xl mt-4 text-amber-200 tracking-wider" style={{ textShadow: '0 0 15px rgba(252, 211, 77, 0.7)' }}>
           {tagline}
         </p>
       </div>

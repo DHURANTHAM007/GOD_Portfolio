@@ -14,7 +14,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, id }) => {
         {experiences.map((exp, index) => (
           <div key={index} className="relative mb-12 last:mb-0">
             {/* Dot on the timeline */}
-            <div className="absolute -left-[34px] sm:-left-[42px] top-1 w-5 h-5 bg-slate-800 rounded-full border-4 border-amber-400 shadow-lg shadow-amber-300/50"></div>
+            <div className="absolute -left-[34px] sm:-left-[42px] top-1 w-5 h-5 bg-[#0c0c1e] rounded-full border-4 border-amber-400 shadow-[0_0_10px_#fcd34d]"></div>
             
             <p className="text-sm text-amber-300 mb-1">{exp.period}</p>
             <h3 className="text-xl md:text-2xl font-display font-bold text-white">{exp.role}</h3>
